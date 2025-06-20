@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
   return(
     <main className="bg-black">
         <Navbar/> 
+        
             </main>
   )
 }

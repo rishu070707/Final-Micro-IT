@@ -1,6 +1,6 @@
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap';
-import { rightImg, watchImg } from '../utills';
+
 import VideoCrousel from './VideoCrousel';
 const Highlights = () => {
   useGSAP(() => {
@@ -8,11 +8,11 @@ const Highlights = () => {
     gsap.to(".link",{opacity:1 ,y:0 , duration:1, stagger:0.25})
   },[])
   return (
-    <section id="Highlights" className="w-screen overflow-hidden h-full common-padding bg-zinc" > 
+    <section id="Highlights" className="w-screen overflow-hidden h-full common-padding bg-white" > 
      <div className="scree-max-width">
-       <div className="mb-12   md:flex full items-end justify-between">
-        <h1 id="title" className="section-heading">
-          Get the Highlights
+       <div className="mb-12  md:flex full items-end justify-between">
+        <h1 id="title" className=" text-black text-3xl font-bold left-4">
+          Get the <span className="text-blue">Highlights</span>
         </h1>
        </div>
        <VideoCrousel/>

@@ -1,13 +1,18 @@
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { heroVideo , smallHeroVideo } from '../utills';
-import { useEffect, useState } from 'react';
-import { color } from 'framer-motion';
-
+import { useEffect, useState ,useRef} from 'react';
+import { useTypewriter, Cursor } from "react-simple-typewriter";
+import video from './D_Animation_Video_Ready.mp4'
 const Hero = () => {
   const [videoSrc, setVideoSrc] = useState(window.innerWidth < 760 ? smallHeroVideo : heroVideo);
   const [isChatOpen, setIsChatOpen] = useState(false);
-
+  const textRef = useRef(null);
+  const videoRef = useRef(null);
+  const [text] = useTypewriter({
+    words: ["Projects", "Getting Intern", "Learning"],
+    loop: true,
+  });
   const handlevideoSrcset = () => {
     if (window.innerWidth < 760) {
       setVideoSrc(smallHeroVideo);
@@ -15,6 +20,34 @@ const Hero = () => {
       setVideoSrc(heroVideo);
     }
   };
+   useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.from(textRef.current, {
+        opacity: 0,
+        y: 50,
+        duration: 0.6,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: textRef.current,
+          start: "top 80%",
+        },
+      });
+
+      gsap.from(videoRef.current, {
+        opacity: 0,
+        x: 50,
+        duration: 0.5,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: videoRef.current,
+          start: "top 80%",
+        },
+      });
+    });
+
+    return () => ctx.revert();
+  }, []);
+
 
   useEffect(() => {
     window.addEventListener('resize', handlevideoSrcset);
@@ -30,22 +63,70 @@ const Hero = () => {
 
   return (
     <section className="w-full nav-height bg-balck relative">
-      <div className="h-5/6 w-full flex-center flex-col top-6">
-        <p id='hero' className="hero-title top-6">Welcome To Micro It</p>
-        <div className="md:w-7/12 w-12/12">
-          <video autoPlay muted playsInline key={videoSrc}>
-            <source src={videoSrc} type='video/mp4' />
-          </video>
+     <section className="min-h-screen bg-gradient-to-br from-pink-100 via-pink-50 to-purple-100 flex items-center px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto w-full py-8 sm:py-12 lg:py-16">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12">
+          
+          {/* Left Content */}
+          <div
+  ref={textRef}
+  className="will-change-transform flex-1 w-full text-center lg:text-left"
+>
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold leading-tight mb-4 sm:mb-6 text-black">
+              Say Goodbye to Coding Stress. Hello,{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue to-blue block sm:inline mt-2 sm:mt-0">
+                Micro IT
+              </span>
+            </h1>
+
+            <div className="mb-8">
+              <p className="text-lg sm:text-xl md:text-2xl text-gray-700">
+                Your one-stop solution. We specialize in
+              </p>
+              <div className="h-12 sm:h-14 md:h-16 flex items-center justify-center lg:justify-start">
+                <span className="text-xl sm:text-2xl md:text-3xl text-blue-700 font-bold bg-blue px-3 py-2 rounded-lg inline-block">
+                  {text}
+                </span>
+                <Cursor cursorColor="#2563EB" />
+              </div>
+            </div>
+
+            {/* Buttons */}
+            <div className="flex gap-4 justify-center lg:justify-start">
+              <a
+                      href="/Play"
+                      className="px-6 py-3 bg-zinc hover:bg-blue text-white font-semibold rounded-xl shadow-md transition-all duration-300">
+                      Learn
+                    </a>
+               <a
+                      href="/Play"
+                      className="px-6 py-3 border border-blue text-blue hover:bg-blue hover:text-white font-semibold rounded-xl transition-all duration-300">
+                    Projects
+                    </a>
+            </div>
+          </div>
+
+          {/* Right Content: Video */}
+         <div
+  ref={videoRef}
+  className="will-change-transform flex-1 w-full"
+>
+            <video
+              className="w-full rounded-2xl shadow-lg"
+              autoPlay
+              loop
+              muted
+              playsInline
+            >
+              <source src={video} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
         </div>
       </div>
-      <div id='cta' className="flex flex-col items-center opacity 0 translate-y-20">
-        <a href="#Highlights" className="btn">Explore</a>
-        <p className="font-normal text-xl">
-          Welcome to Micro IT
-        </p>
-      </div>
+    </section>
 
-      {/* Chat Toggle Button */}
+      
       <button
         onClick={() => setIsChatOpen(true)}
         style={{
@@ -67,7 +148,7 @@ const Hero = () => {
         💬
       </button>
 
-      {/* Chatbox Popup */}
+     
       {isChatOpen && (
         <div style={{
           position: 'fixed',
@@ -81,7 +162,7 @@ const Hero = () => {
           zIndex: 1000,
           boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3)',
         }}>
-          {/* Close Button */}
+        
           <button
             onClick={() => setIsChatOpen(false)}
             style={{
@@ -99,7 +180,7 @@ const Hero = () => {
             X
           </button>
 
-          {/* Chatbase Iframe */}
+       
           <iframe
             src="https://www.chatbase.co/chatbot-iframe/rwpc-wYhstXY7jNemzzSz"
             width="100%"

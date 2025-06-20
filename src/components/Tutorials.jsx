@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 
-
-// Data for the tutorials with direct web links for images.
 const tutorialsData = [
   {
     id: 1,
@@ -71,30 +69,31 @@ const tutorialsData = [
   },
 ];
 
-
-const Tutorials = () => {
-  // State to manage the selected filters
+const Tutorials = ({ tutorial }) => {
   const [topicFilter, setTopicFilter] = useState('All Topics');
   const [levelFilter, setLevelFilter] = useState('All Levels');
 
-  // Filter logic for tutorials
   const filteredTutorials = tutorialsData.filter(tutorial => {
     const topicMatch = topicFilter === 'All Topics' || tutorial.topic === topicFilter;
     const levelMatch = levelFilter === 'All Levels' || tutorial.level === levelFilter;
     return topicMatch && levelMatch;
   });
 
+  const handleStartTutorial = () => {
+    console.log("Starting tutorial...");
+  };
+
   return (
-    <section id="tutorials" className="page-section bg-zinc">
+    <section id="tutorials" className="page-section bg-gradient-to-br from-pink-100 via-pink-50 to-purple-100">
       <div className="container mx-auto px-4 py-16">
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-50 mb-4">Tutorials</h1>
-          <p className="text-xl text-gra">
+          <h1 className="text-4xl font-bold text-black mb-4">Tutorials</h1>
+          <p className="text-xl text-blue">
             Master programming languages and technologies with our step-by-step guides
           </p>
         </div>
 
-        {/* Filters Section */}
+        {/* Filter Section */}
         <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
           <div className="flex flex-wrap gap-4 items-center">
             <span className="font-semibold text-gray-700">Filter by:</span>
@@ -124,7 +123,7 @@ const Tutorials = () => {
           </div>
         </div>
 
-        {/* Learning Progress Section */}
+        {/* Progress Section */}
         <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
           <h3 className="text-xl font-semibold mb-4 text-gray-800">
             Your Learning Progress
@@ -133,7 +132,7 @@ const Tutorials = () => {
             <div>
               <div className="flex justify-between mb-2">
                 <span className="text-gray-700">Java Fundamentals</span>
-                <span className="text-blue  font-semibold">75%</span>
+                <span className="text-blue font-semibold">75%</span>
               </div>
               <div className="w-full bg-gray-200 rounded-full h-2">
                 <div
@@ -157,7 +156,7 @@ const Tutorials = () => {
           </div>
         </div>
 
-        {/* Dynamically Filtered Tutorial Cards */}
+        {/* Tutorials Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredTutorials.map((tutorial) => (
             <div 
@@ -197,15 +196,27 @@ const Tutorials = () => {
                       <span className="text-blue font-semibold">{tutorial.rating} ⭐ ({tutorial.students} students)</span>
                     </div>
                   )}
-                  <button className="w-full bg-blue  text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
-                    {tutorial.students ? 'Enroll Now' : 'Start Tutorial'}
-                  </button>
+                  
+                  {tutorial.students ? (
+                    <a
+                      href="/Play"
+                      className="w-full bg-blue text-white py-3 rounded-lg font-semibold hover:bg-blue transition-colors inline-block text-center"
+                    >
+                      Start Tutorial
+                    </a>
+                  ) : (
+                    <button
+                      onClick={handleStartTutorial}
+                      className="w-full bg-blue text-white py-3 rounded-lg font-semibold hover:bg-blue transition-colors"
+                    >
+                      
+                    </button>
+                  )}
                 </div>
               </div>
             </div>
           ))}
         </div>
-
       </div>
     </section>
   );

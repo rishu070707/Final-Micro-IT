@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-// --- Mock Data for Projects (with imageSrc links) ---
+
 const projectsData = [
   {
     id: 'todo-app',
@@ -9,7 +9,7 @@ const projectsData = [
     description: 'Build a simple todo list with HTML, CSS, and JavaScript. Learn the basics of DOM manipulation and local storage.',
     duration: '2-3 hours',
     technologies: 'HTML, CSS, JavaScript',
-    imageSrc: 'https://cdn-icons-png.flaticon.com/512/3209/3209861.png', // Image Link
+    imageSrc: 'https://cdn-icons-png.flaticon.com/512/3209/3209861.png', 
     overview: 'A comprehensive todo list application with local storage, drag-and-drop functionality, and category management.',
     instructions: [
       'Set up your development environment',
@@ -52,7 +52,7 @@ const projectsData = [
     description: 'Create a weather dashboard using OpenWeather API. Implement geolocation and dynamic weather updates.',
     duration: '4-5 hours',
     technologies: 'React, API Integration',
-    imageSrc: 'https://cdn-icons-png.flaticon.com/512/1163/1163661.png', // Image Link
+    imageSrc: 'https://cdn-icons-png.flaticon.com/512/1163/1163661.png', 
     overview: 'A sleek weather dashboard that fetches and displays real-time weather data from the OpenWeather API based on user location.',
     instructions: [ 'Set up a new React project.', 'Get an API key from OpenWeather.', 'Implement API calls to fetch weather data.', 'Style the dashboard and deploy.'],
     codeSample: `// Fetch Weather Data...`,
@@ -67,7 +67,7 @@ const projectsData = [
     description: 'Build a full-stack e-commerce platform with user authentication, product management, and payment integration.',
     duration: '15-20 hours',
     technologies: 'MERN Stack, Stripe',
-    imageSrc: 'https://cdn-icons-png.flaticon.com/512/3081/3081986.png', // Image Link
+    imageSrc: 'https://cdn-icons-png.flaticon.com/512/3081/3081986.png', 
     overview: 'A feature-rich, full-stack e-commerce website using the MERN stack (MongoDB, Express, React, Node.js) and Stripe for payment processing.',
     instructions: ['Design the database schema with MongoDB.', 'Build the backend API with Node.js and Express.', 'Set up user authentication with JWT.', 'Integrate the Stripe API for payments.'],
     codeSample: `// Backend Route for Payment...`,
@@ -75,7 +75,7 @@ const projectsData = [
   },
 ];
 
-// --- Sub-components for Modal ---
+
 const StarRating = ({ rating = 0 }) => {
   const fullStars = Math.floor(rating);
   const halfStar = rating % 1 !== 0;
@@ -274,12 +274,12 @@ const Projects = () => {
     : allProjects.filter(project => project.level === activeFilter);
 
   return (
-    <section id="projects" className="page-section bg-black text-white py-16">
+    <section id="projects" className="page-section bg-gradient-to-br from-pink-100 via-pink-50 to-purple-100 text-white py-16">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <span className="text-blue-400 text-sm font-semibold tracking-wide uppercase">Our Projects</span>
-          <h1 className="text-4xl font-bold mt-2 mb-4">Explore Our Project Collection</h1>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+          <span className="text-blue text-sm font-semibold tracking-wide uppercase">Our Projects</span>
+          <h1 className="text-4xl font-bold mt-2 mb-4 text-black">Explore Our Project Collection</h1>
+          <p className="text-xl text-blue  max-w-3xl mx-auto">
             Dive into our carefully curated collection of hands-on projects designed to help you master various technologies and build your portfolio.
           </p>
         </div>
@@ -299,7 +299,7 @@ const Projects = () => {
           {filteredProjects.map(project => (
             <div key={project.id} className="project-card" data-level={project.level}>
               <div className="bg-gray-900 rounded-xl shadow-lg overflow-hidden h-full flex flex-col transition-all duration-300 ease-in-out hover:transform hover:-translate-y-1 hover:shadow-2xl hover:shadow-blue-500/20">
-                {/* MODIFIED PART: Image is rendered here */}
+                
                 <div className="relative">
                   <div className="h-48 bg-gray-800 flex items-center justify-center">
                       <img src={project.imageSrc} alt={project.title} className="h-24 w-24 object-contain"/>

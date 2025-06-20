@@ -25,7 +25,7 @@ const Video2 = () => {
   const [loadedData, setLoadedData] = useState([]);
   const { isEnd, isLastVideo, startPlay, videoId, isPlaying } = videoState;
 
-  // Animate slider and video on videoId change
+ 
   useGSAP(() => {
     gsap.to(sliderRef.current, {
       x: `-${100 * videoId}%`,
@@ -51,7 +51,7 @@ const Video2 = () => {
     }
   }, [videoId]);
 
-  // Progress bar animation
+  
   useEffect(() => {
     let currentProgress = 0;
     const span = progressFillRefs.current[videoId];
@@ -76,14 +76,14 @@ const Video2 = () => {
 
             gsap.to(span, {
               width: `${currentProgress}%`,
-              backgroundColor: "white",
+              backgroundColor: "white", // Progress fill color
             });
           }
         },
         onComplete: () => {
           if (isPlaying) {
             gsap.to(progressBarRefs.current[videoId], { width: "12px" });
-            gsap.to(span, { backgroundColor: "#afafaf" });
+            gsap.to(span, { backgroundColor: "#afafaf" }); // After completion color
           }
         },
       });
@@ -100,7 +100,7 @@ const Video2 = () => {
     }
   }, [videoId, startPlay]);
 
-  // Play/pause video when state changes
+
   useEffect(() => {
     const video = videoRefs.current[videoId];
     if (loadedData.length >= hightlightsSlides2.length && video) {
@@ -112,7 +112,7 @@ const Video2 = () => {
     }
   }, [startPlay, videoId, isPlaying, loadedData]);
 
-  // Handle video state transitions
+
   const handleProcess = (type, i) => {
     switch (type) {
       case "video-end":
@@ -152,18 +152,20 @@ const Video2 = () => {
 
   return (
     <>
-      <div className="overflow-hidden">
+      <div className="overflow-hidden ">
         <div className="flex transition-wrapper" ref={sliderRef}>
           {hightlightsSlides2.map((list, i) => (
             <div
               key={list.id}
-              className="min-w-full sm:pr-20 pr-10 video-carousel_container"
+              // Changed justify-end to justify-start for left alignment
+              // Added pl-8 (padding-left) to control spacing from left edge
+              className="min-w-full sm:pr-20 pr-10 video-carousel_container flex justify-start items-center p-4" //
             >
-              <div className="w-full h-full flex-center rounded-3xl overflow-hidden bg-black">
+              <div className="w-full h-full flex-center rounded-[30px] overflow-hidden bg-black relative">
                 <video
                   className={`${
                     list.id === 2 ? "translate-x-44" : ""
-                  } pointer-events-none`}
+                  } w-full h-full object-contain pointer-events-none`}
                   playsInline
                   preload="auto"
                   muted
@@ -180,14 +182,16 @@ const Video2 = () => {
                 >
                   <source src={list.video} type="video/mp4" />
                 </video>
-              </div>
 
-              <div className="absolute top-12 left-[5%] z-10">
-                {list.textLists.map((text, idx) => (
-                  <p key={idx} className="md:text-2xl text-xl font-medium">
-                    {text}
-                  </p>
-                ))}
+                {/* Text overlay needs to be absolutely positioned relative to its parent .video-carousel_container or the black box */}
+                {/* Positioned to left edge with padding */}
+                <div className="absolute top-12 md:top-20 lg:top-24 left-[10%] text-left z-10 w-full"> {/* Adjusted to left edge, and text-left */}
+                  {list.textLists.map((text, idx) => (
+                    <p key={idx} className="md:text-4xl text-2xl font-bold text-white mb-2">
+                      {text}
+                    </p>
+                  ))}
+                </div>
               </div>
             </div>
           ))}
@@ -195,22 +199,22 @@ const Video2 = () => {
       </div>
 
       <div className="relative flex-center mt-10">
-        <div className="flex-center py-5 px-7 bg-gray-300 backdrop-blur rounded-full">
+        <div className="flex-center py-5 px-7 bg-white backdrop-blur rounded-full shadow-lg"> {/* Changed background to white, added shadow */}
           {hightlightsSlides2.map((_, i) => (
             <span
               key={i}
-              className="mx-2 w-3 h-3 bg-gray-200 rounded-full relative cursor-pointer"
+              className="mx-2 w-3 h-3 bg-gray-400 rounded-full relative cursor-pointer" // Base dot color changed to gray-400
               ref={(el) => (progressBarRefs.current[i] = el)}
             >
               <span
-                className="absolute h-full w-full rounded-full"
+                className="absolute h-full w-full rounded-full bg-black" // Fill color changed to black
                 ref={(el) => (progressFillRefs.current[i] = el)}
               />
             </span>
           ))}
         </div>
 
-        <button className="control-btn">
+        <button className="control-btn bg-white rounded-full p-3 shadow-lg ml-4"> {/* Control button style update */}
           <img
             src={isLastVideo ? replayImg : !isPlaying ? playImg : pauseImg}
             alt={isLastVideo ? "replay" : !isPlaying ? "play" : "pause"}
@@ -219,6 +223,7 @@ const Video2 = () => {
                 ? handleProcess("video-reset")
                 : handleProcess(isPlaying ? "pause" : "play")
             }
+            className="w-7 h-" // Ensure image size
           />
         </button>
       </div>

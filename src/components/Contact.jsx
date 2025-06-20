@@ -2,7 +2,7 @@ import React from 'react';
 
 const Contact = () => {
   return (
-    <section id="contact" className="page-section bg-gray-50 py-16">
+    <section id="contact" className="page-section bg-gradient-to-br from-pink-100 via-pink-50 to-purple-100py-16">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
             <h1 className="text-4xl font-bold text-gray-800 mb-4">Contact Us</h1>
@@ -23,7 +23,7 @@ const Contact = () => {
                   <label className="block text-gray-700 font-medium mb-2">Message</label>
                   <textarea className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue h-32  text-black" placeholder="Your message"></textarea>
                 </div>
-                <button className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+                <button className="w-full bg-blue text-white py-3 rounded-lg font-semibold hover:bg-blue  transition-colors">
                   Send Message
                 </button>
               </form>

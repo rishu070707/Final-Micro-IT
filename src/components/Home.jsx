@@ -10,23 +10,20 @@ const Home = () => {
   return (
     <>
     <Hero />
-      <Highlights />
-      <High/>
-  
-      <div className="bg-black text-center py-20 md:py-32">
+      <div className="bg-gradient-to-br from-pink-100 via-pink-50 to-purple-100 text-center py-20 md:py-32">
         <div className="container mx-auto px-4">
-          <h1 className="text-4xl md:text-6xl font-bold text-gray-50  mb-4">
+          <h1 className="text-4xl md:text-6xl font-bold text-black mb-4">
             Everyone have rights to contribute
           </h1>
-          <p className="text-lg md:text-xl text-gray max-w-3xl mx-auto mb-8">
+          <p className="text-lg md:text-xl text-blue max-w-3xl mx-auto mb-8  font-extrabold">
             Join thousands of students in mastering programming, web development, and cutting-edge technologies with our comprehensive courses and hands-on projects.
           </p>
           <div className="flex justify-center space-x-6 pt-16">
   <Link
     to="/tutorials"
-    className="group relative px-12 py-4 text-lg font-light tracking-[0.2em] text-white border border-white/30 rounded-full overflow-hidden transition-all duration-700 ease-in-out"
+    className="group relative px-12 py-4 text-lg font-light tracking-[0.2em] text-white border border-white/30 rounded-full overflow-hidden transition-all duration-700 ease-in-out bg-black drop-shadow-xl"
   >
-    <span className="relative z-10 transition-colors duration-500 ease-in-out group-hover:text-black">
+    <span className="relative z-10 transition-colors duration-500 ease-in-out group-hover:text-black  ">
       ▶ START LEARNING
     </span>
     <div className="absolute inset-0 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-in-out origin-center"></div>
@@ -34,9 +31,9 @@ const Home = () => {
 
   <Link
     to="/projects"
-    className="group relative px-12 py-4 text-lg font-light tracking-[0.2em] text-white border border-white/30 rounded-full overflow-hidden transition-all duration-700 ease-in-out"
+    className="group relative px-12 py-4 text-lg font-light tracking-[0.2em] text-white border border-white/30 rounded-full overflow-hidden transition-all duration-700 ease-in-out bg-black shadow-xl"
   >
-    <span className="relative z-10 transition-colors duration-500 ease-in-out group-hover:text-black">
+    <span className="relative z-10 transition-colors duration-500 ease-in-out group-hover:text-black drop-shadow-2xl">
       &lt;/&gt; BROWSE PROJECTS
     </span>
     <div className="absolute inset-0 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-in-out origin-center"></div>
@@ -47,15 +44,19 @@ const Home = () => {
         </div>
       </div>
 
+      <Highlights />
+      <High/>
+  
     
-      <div className="container mx-auto px-4 py-16">
-        <h2 className="text-3xl font-bold text-center mb-12 text-gray-50">
+    
+      <div className="container mx-auto px-4 py-16 bg-white">
+        <h2 className="text-3xl font-bold text-center mb-12 text-black">
           Featured Courses
         </h2>
         <div className="slider overflow-x-auto">
           <div className="flex space-x-6 pb-4">
             
-          <div className="min-w-80 bg-zinc rounded-xl shadow-lg p-6 py-2 cursor-pointer transition-transform duration-300 hover:scale-105">
+          <div className="min-w-80 bg-white rounded-xl shadow-lg p-6 py-2 cursor-pointer transition-transform duration-300 hover:scale-105">
   
 
   <div className="w-full h-48 bg-gray-200 rounded-lg mb-4 overflow-hidden">
@@ -67,21 +68,24 @@ const Home = () => {
   </div>
   
 
-  <h3 className="text-xl font-semibold mb-2 text-white">
+  <h3 className="text-xl font-semibold mb-2 text-black">
     Complete Java Bootcamp
   </h3>
-  <p className="text-white mb-4">
+  <p className="text-black mb-4">
     Master Java from basics to advanced concepts
   </p>
   <div className="flex justify-between items-center">
-    <span className="text-blue font-semibold">4.8 ⭐ (2.1k students)</span>
-    <button className="bg-blue text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
-      Enroll Now
-    </button>
+    <span className="text-blue font-semibold text-xs">4.8 ⭐ (2.1k students)</span>
+      <a
+                      href="/Play"
+                      className="w-full bg-blue text-white py-3 rounded-lg font-semibold hover:bg-blue transition-colors inline-block text-center"
+                    >
+                      Start Tutorial
+                    </a>
   </div>
 </div>
             
-            <div className="min-w-80 bg-zinc rounded-xl shadow-lg p-6 py-2 cursor-pointer transition-transform duration-300 hover:scale-105">
+            <div className="min-w-80 bg-white rounded-xl shadow-lg p-6 py-2 cursor-pointer transition-transform duration-300 hover:scale-105">
               
   <div className="w-full h-48 bg-gray-200 rounded-lg mb-4 overflow-hidden">
     <img 
@@ -90,20 +94,23 @@ const Home = () => {
       className="w-full h-full object-cover"
     />
   </div>
-              <h3 className="text-xl text-gray-50 font-semibold mb-2">Python for Beginners</h3>
-              <p className="text-gray-50 mb-4">
+              <h3 className="text-xl text-black font-semibold mb-2">Python for Beginners</h3>
+              <p className="text-black mb-4">
                 Start your programming journey with Python's simple syntax.
               </p>
               <div className="flex justify-between items-center">
-                <span className="text-blue font-semibold">4.9 ⭐ (3.2k students)</span>
-                <button className="bg-blue  text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
-                  Enroll Now
-                </button>
+                <span className="text-blue font-semibold text-xs">4.9 ⭐ (3.2k students)</span>
+                 <a
+                      href="/Play"
+                      className="w-full bg-blue text-white py-3 rounded-lg font-semibold hover:bg-blue transition-colors inline-block text-center"
+                    >
+                      Start Tutorial
+                    </a>
               </div>
             </div>
 
-            {/* Card 3: React */}
-             <div className="min-w-80 bg-zinc rounded-xl shadow-lg p-6 py-2 cursor-pointer transition-transform duration-300 hover:scale-105">
+           
+             <div className="min-w-80 bg-white rounded-xl shadow-lg p-6 py-2 cursor-pointer transition-transform duration-300 hover:scale-105">
               <div className="w-full h-48 bg-gray-200 rounded-lg mb-4 overflow-hidden">
     <img 
       src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsqimf1qXmdxgRmKAyOE-vwx-5l6_TTvRclw&s" 
@@ -111,15 +118,19 @@ const Home = () => {
       className="w-full h-full object-cover"
     />
   </div>
-              <h3 className="text-xl text-gray-50 font-semibold mb-2">React Development</h3>
-              <p className="text-gray-50 mb-4">
+              <h3 className="text-xl text-black font-semibold mb-2">React Development</h3>
+              <p className="text-black mb-4">
                 Build modern web applications with React and its ecosystem.
               </p>
               <div className="flex justify-between items-center">
-                <span className="text-blue font-semibold">4.7 ⭐ (1.8k students)</span>
-                <button className="bg-blue  text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
-                  Enroll Now
-                </button>
+                <span className="text-blue font-semibold text-xs">4.7 ⭐ (1.8k students)</span>
+                
+                  <a
+                      href="/Play"
+                      className="w-full bg-blue text-white py-3 rounded-lg font-semibold hover:bg-blue transition-colors inline-block text-center"
+                    >
+                      Start Tutorial
+                    </a>
               </div>
             </div>
           
@@ -128,18 +139,20 @@ const Home = () => {
       </div>
       
       <UniversityLogos/>
-            <div className="bg-zinc text-center py-20 md:py-28">
+            <div className="bg-white text-center py-20 md:py-28">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-zinc-900 mb-6">Our Mission</h2>
-          <p className="text-lg md:text-xl max-w-4xl mx-auto text-zinc-700 leading-relaxed">
+          <h2 className="text-3xl md:text-4xl font-bold text-black mb-6">Our Mission</h2>
+          <p className="text-lg md:text-xl max-w-4xl mx-auto text-blue leading-relaxed">
             At MITS, we believe in empowering students with practical, industry-relevant skills that prepare them for successful careers in technology. 
             Our comprehensive programs combine theoretical knowledge with hands-on experience, mentorship, and real-world projects to bridge the gap between education and industry demands.
           </p>
         </div>
       </div>
-
-      <Stats/>
+<div className="bg-gradient-to-br from-pink-100 via-pink-50 to-purple-10 ">
+  <Stats/>
       <FloatingButton/>
+      </div>
+      
     </>
   );
 };

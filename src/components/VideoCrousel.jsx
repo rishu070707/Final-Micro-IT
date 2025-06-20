@@ -25,7 +25,7 @@ const VideoCarousel = () => {
 
   const { videoId, isPlaying, isLastVideo, startPlay } = videoState;
 
-  // Slide transition animation
+  
   useGSAP(() => {
     gsap.to(sliderRef.current, {
       x: `-${100 * videoId}%`,
@@ -33,7 +33,7 @@ const VideoCarousel = () => {
       ease: "power2.inOut",
     });
 
-    // Autoplay video when in view
+    
     gsap.to(videoRefs.current[videoId], {
       scrollTrigger: {
         trigger: videoRefs.current[videoId],
@@ -49,7 +49,7 @@ const VideoCarousel = () => {
     });
   }, [videoId]);
 
-  // Video progress bar animation
+
   useEffect(() => {
     let currentProgress = 0;
     const span = progressFillRefs.current[videoId];
@@ -83,7 +83,7 @@ const VideoCarousel = () => {
         onComplete: () => {
           if (isPlaying) {
             gsap.to(progressBarRefs.current[videoId], { width: "12px" });
-            gsap.to(span, { backgroundColor: "#afafaf" });
+            gsap.to(span, { backgroundColor:"white" });
           }
         },
       });
@@ -102,7 +102,7 @@ const VideoCarousel = () => {
     }
   }, [videoId, startPlay]);
 
-  // Play/Pause video based on state
+
   useEffect(() => {
     const video = videoRefs.current[videoId];
     if (loadedData.length > 3) {
@@ -149,7 +149,7 @@ const VideoCarousel = () => {
           {hightlightsSlides.map((slide, i) => (
             <div
               key={slide.id}
-              className="slider-item min-w-full sm:pr-20 pr-10 video-carousel_container"
+              className="slider-item min-w-full sm:pr-20 pr-10 video-carousel_container "
             >
               <div className="w-full h-full flex-center rounded-3xl overflow-hidden bg-black">
                 <video
@@ -187,11 +187,11 @@ const VideoCarousel = () => {
       </div>
 
       <div className="relative flex-center mt-10">
-        <div className="flex-center py-5 px-7 bg-gray-300 backdrop-blur rounded-full">
+        <div className="flex-center py-5 px-7 bg-black backdrop-blur rounded-full">
           {hightlightsSlides.map((_, i) => (
             <span
               key={i}
-              className="mx-2 w-3 h-3 bg-gray-200 rounded-full relative cursor-pointer"
+              className="mx-2 w-3 h-3 bg-blue rounded-full relative cursor-pointer"
               ref={(el) => (progressBarRefs.current[i] = el)}
             >
               <span
@@ -204,6 +204,7 @@ const VideoCarousel = () => {
 
         <button className="control-btn">
           <img
+  
             src={isLastVideo ? replayImg : !isPlaying ? playImg : pauseImg}
             alt={isLastVideo ? "replay" : !isPlaying ? "play" : "pause"}
             onClick={() =>
@@ -211,6 +212,7 @@ const VideoCarousel = () => {
                 ? handleVideoProcess("video-reset")
                 : handleVideoProcess(isPlaying ? "pause" : "play")
             }
+  
           />
         </button>
       </div>

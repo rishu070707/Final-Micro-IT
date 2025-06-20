@@ -1,12 +1,12 @@
 import React from 'react';
 
 const StatCard = ({ icon, value, label, gradient }) => (
-  <div className="bg-white rounded-xl shadow-xl p-8 transform transition duration-300 hover:-translate-y-2">
+  <div className="bg-white  rounded-xl shadow-xl p-8 transform transition duration-300 hover:-translate-y-2">
     <div className={`w-20 h-20 mx-auto ${gradient} rounded-full flex items-center justify-center mb-5 shadow-lg`}>
       <i className={`fas ${icon} text-4xl text-white`}></i>
     </div>
     <h3 className="text-5xl font-bold text-gray-800 mb-2">{value}</h3>
-    <p className="text-gray-500 font-medium">{label}</p>
+    <p className="text-blue font-medium">{label}</p>
   </div>
 );
 
