@@ -99,7 +99,7 @@ const Hero = () => {
                       Learn
                     </a>
                <a
-                      href="/Play"
+                      href="/projects"
                       className="px-6 py-3 border border-blue text-blue hover:bg-blue hover:text-white font-semibold rounded-xl transition-all duration-300">
                     Projects
                     </a>

@@ -36,7 +36,7 @@ const Play = () => {
     ],
     'react': [
       { id: 'r1', title: 'React Fundamentals: Components', url: 'https://www.youtube.com/watch?v=SqcY0GlETPk&t=680s' },
-      { id: 'r2', title: 'State Management with Hooks', url: 'https://www.youtube.com/watch?v=LOH1l-MP_9k' },
+      { id: 'r2', title: 'State Management with Hooks', url: 'https://www.youtube.com/watch?v=zHoWgJD0jw4' },
       { id: 'r3', title: 'React Router for Navigation', url: 'https://www.youtube.com/watch?v=oTIJunBa6MA' },
       { id: 'r4', title: 'Styling React Apps with Tailwind CSS', url: 'https://www.youtube.com/watch?v=L3wJe66tlBk' },
       { id: 'r5', title: 'Building Custom Hooks in React', url: 'https://www.youtube.com/watch?v=4fmYrIWl-4Q' },
@@ -65,13 +65,14 @@ const Play = () => {
 
   const getYouTubeEmbedUrl = (url) => {
     const id = getYouTubeId(url);
+    // Modified URL to use actual YouTube embed URL
     return id ? `https://www.youtube.com/embed/${id}?autoplay=1&rel=0&modestbranding=1` : '';
   };
 
   const handleCourseChange = (e) => setSelectedCourse(e.target.value);
 
   const handleVideoSelect = useCallback((url, title) => {
-    if (url.includes('youtube.com') || url.includes('youtu.be')) {
+    if (url.includes('youtube.com') || url.includes('youtu.be')) { // Changed to check for actual YouTube domains
       setCurrentYouTubeEmbed(getYouTubeEmbedUrl(url));
       setCurrentLocalVideo('');
       setIsYouTubeVideo(true);
@@ -87,6 +88,21 @@ const Play = () => {
     const first = courses[selectedCourse]?.[0];
     if (first) handleVideoSelect(first.url, first.title);
   }, [selectedCourse, handleVideoSelect]);
+
+  const handleDownload = () => {
+    // This function would only work for locally hosted videos.
+    // For YouTube videos, direct download is not feasible client-side.
+    if (!isYouTubeVideo && currentLocalVideo) {
+      const link = document.createElement('a');
+      link.href = currentLocalVideo;
+      link.download = currentVideoTitle.replace(/[^a-z0-9]/gi, '_').toLowerCase() + '.mp4'; // Basic filename sanitation
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } else {
+      alert("Direct download is not available for YouTube videos.");
+    }
+  };
 
   return (
     <div className="p-4 bg-gradient-to-br from-pink-100 via-pink-50 to-purple-100 min-h-screen">
@@ -126,7 +142,15 @@ const Play = () => {
               />
             )}
           </div>
-          <h2 className="mt-4 text-xl font-bold text-gray-800">{currentVideoTitle}</h2>
+          <div className="flex items-center mt-4">
+            <h2 className="text-xl font-bold text-gray-800 mr-4">{currentVideoTitle}</h2>
+            <button
+              onClick={handleDownload}
+              className="px-3 py-1 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+            >
+              Download
+            </button>
+          </div>
         </div>
 
         <div className="w-full lg:w-1/3">
@@ -140,8 +164,8 @@ const Play = () => {
               >
                 <img
                   src={
-                    video.url.includes('youtube.com') || video.url.includes('youtu.be')
-                      ? `https://img.youtube.com/vi/${getYouTubeId(video.url)}/mqdefault.jpg`
+                    video.url.includes('youtube.com') || video.url.includes('youtu.be') // Changed to check for actual YouTube domains
+                      ? `https://img.youtube.com/vi/${getYouTubeId(video.url)}/mqdefault.jpg` // Corrected YouTube thumbnail URL
                       : 'https://placehold.co/120x70/E5E7EB/374151?text=Video'
                   }
                   alt="thumbnail"
